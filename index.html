@@ -5,20 +5,357 @@
 	<!--mobile rwd meta-->
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<title>Pre Interview</title>
-	<link rel="stylesheet" href="css/style.css">
+	<style>
+		html,body{
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+
+		#outer{
+			width: 100%;
+			height: 100%;
+			background: #fff;
+			position: relative;
+		}
+
+		.counter{
+			position: absolute;
+			top: 5px;
+			left: 5px;
+			width: 40px;
+			display: block;
+		}
+
+		.box{
+			display: inline-block;
+			background: #434343;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+		}
+		.box .inside{
+			position: relative;
+			width: 100%;
+			height: 100%;
+		}
+		.box .inside .img{
+			display: none;
+			position: absolute;
+			max-width: 130px;
+			max-height: 130px;
+			width: 10%;
+		}
+	</style>
 	<script>
 		var domReady = function(callback) {
 		document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
 		};
 
+		var count;
+		var countimg;
+		var posArray = [];
+		var boxWidth;
+		var boxHeight
+		var Num = 12;
+
 		domReady(function() {
-		    boxsize();
+			var box = boxsize();
+			boxWidth = box.width;
+			boxHeight = box.height;
+			var time = 120;
+			
+			countdown(time);
+			showimg();
+			randomPos(boxWidth,boxHeight);
+
+			PositionArray();
+
 		    window.addEventListener("resize", function() {
-		    	boxsize();
+		    	clearInterval(count);
+		    	clearInterval(countimg);
+		    	box = boxsize();
+		    	countdown(time);
+		    	showimg();
+		    	boxWidth = box.width;
+		    	boxHeight = box.height;
+		    	posArray = [];
+		    	randomPos(boxWidth,boxHeight);
+
+		    	PositionArray();
 			}, false);
 
 		    
 		});
+
+		function countdown(time){
+			var add = 1;
+			count = setInterval(function(){
+				if(add <= time){
+					document.getElementById("counter").innerHTML = time - add;
+					add += 1;
+				}
+				if(add > time){
+					clearInterval(count);
+				}
+			}, 1000);
+		}
+
+		function showimg(){
+			var length = Num;
+			var add = 0;
+			var boxinside = document.getElementById("boxinside");
+			var child = boxinside.children;
+			for(a=0;a<Num;a++){
+				child[a].style.display = 'none';
+			}
+			countimg = setInterval(function(){
+				child[add].style.display = 'block';
+				child[add].style.left = posArray[add].x + 'px';
+				child[add].style.top = posArray[add].y + 'px';
+				add += 1;
+				if(add == Num){
+					clearInterval(countimg);
+				}
+			}, 10000);
+		}
+
+		function PositionArray(){
+			for(i=0;i<Num;i++){
+				var random = randomPos();
+				
+				if(i == 1){
+					var com0 = compare(random,posArray[0]);
+					while(!com0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+					}
+				}
+				if(i == 2){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					while(com0*com1 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+					}
+				}
+				if(i == 3){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					while(com0*com1*com2 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+					}
+				}
+				if(i == 4){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					while(com0*com1*com2*com3 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+					}
+				}
+				if(i == 5){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					var com4 = compare(random,posArray[4]);
+					while(com0*com1*com2*com3*com4 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+						com4 = compare(random,posArray[4]);
+					}
+				}
+				if(i == 6){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					var com4 = compare(random,posArray[4]);
+					var com5 = compare(random,posArray[5]);
+					while(com0*com1*com2*com3*com4*com5 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+						com4 = compare(random,posArray[4]);
+						com5 = compare(random,posArray[5]);
+					}
+				}
+				if(i == 7){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					var com4 = compare(random,posArray[4]);
+					var com5 = compare(random,posArray[5]);
+					var com6 = compare(random,posArray[6]);
+					while(com0*com1*com2*com3*com4*com5*com6 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+						com4 = compare(random,posArray[4]);
+						com5 = compare(random,posArray[5]);
+						com6 = compare(random,posArray[6]);
+					}
+				}
+				if(i == 8){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					var com4 = compare(random,posArray[4]);
+					var com5 = compare(random,posArray[5]);
+					var com6 = compare(random,posArray[6]);
+					var com7 = compare(random,posArray[7]);
+					while(com0*com1*com2*com3*com4*com5*com6*com7 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+						com4 = compare(random,posArray[4]);
+						com5 = compare(random,posArray[5]);
+						com6 = compare(random,posArray[6]);
+						com7 = compare(random,posArray[7]);
+					}
+				}
+				if(i == 9){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					var com4 = compare(random,posArray[4]);
+					var com5 = compare(random,posArray[5]);
+					var com6 = compare(random,posArray[6]);
+					var com7 = compare(random,posArray[7]);
+					var com8 = compare(random,posArray[8]);
+					while(com0*com1*com2*com3*com4*com5*com6*com7*com8 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+						com4 = compare(random,posArray[4]);
+						com5 = compare(random,posArray[5]);
+						com6 = compare(random,posArray[6]);
+						com7 = compare(random,posArray[7]);
+						com8 = compare(random,posArray[8]);
+					}
+				}
+				if(i == 10){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					var com4 = compare(random,posArray[4]);
+					var com5 = compare(random,posArray[5]);
+					var com6 = compare(random,posArray[6]);
+					var com7 = compare(random,posArray[7]);
+					var com8 = compare(random,posArray[8]);
+					var com9 = compare(random,posArray[9]);
+					while(com0*com1*com2*com3*com4*com5*com6*com7*com8*com9 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+						com4 = compare(random,posArray[4]);
+						com5 = compare(random,posArray[5]);
+						com6 = compare(random,posArray[6]);
+						com7 = compare(random,posArray[7]);
+						com8 = compare(random,posArray[8]);
+						com9 = compare(random,posArray[9]);
+					}
+				}
+				if(i == 11){
+					var com0 = compare(random,posArray[0]);
+					var com1 = compare(random,posArray[1]);
+					var com2 = compare(random,posArray[2]);
+					var com3 = compare(random,posArray[3]);
+					var com4 = compare(random,posArray[4]);
+					var com5 = compare(random,posArray[5]);
+					var com6 = compare(random,posArray[6]);
+					var com7 = compare(random,posArray[7]);
+					var com8 = compare(random,posArray[8]);
+					var com9 = compare(random,posArray[9]);
+					var com10 = compare(random,posArray[10]);
+					while(com0*com1*com2*com3*com4*com5*com6*com7*com8*com9*com10 == 0){
+						random = randomPos();
+						com0 = compare(random,posArray[0]);
+						com1 = compare(random,posArray[1]);
+						com2 = compare(random,posArray[2]);
+						com3 = compare(random,posArray[3]);
+						com4 = compare(random,posArray[4]);
+						com5 = compare(random,posArray[5]);
+						com6 = compare(random,posArray[6]);
+						com7 = compare(random,posArray[7]);
+						com8 = compare(random,posArray[8]);
+						com9 = compare(random,posArray[9]);
+						com10 = compare(random,posArray[10]);
+					}
+				}
+				
+				posArray.push(random);
+			}
+		}
+
+		function randomPos(){
+			var imgsize = Math.floor(boxWidth/10) + 1;
+			var maxwidth = Math.floor(boxWidth) - imgsize;
+			var maxheight = Math.floor(boxHeight) - imgsize;
+			var ranX = getRandomInt(0, maxwidth);
+			var ranY = getRandomInt(0, maxheight);
+
+			return{
+				x: ranX,
+				y: ranY
+			}
+		}
+
+		function compare(now,already){
+			var distance = lineDistance(now, already);
+			var line = lineDistance({x:0,y:0}, {x:Math.floor(boxWidth/10) + 1,y:Math.floor(boxWidth/10) + 1});
+			if(distance < line){
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+		function lineDistance(point1, point2){
+			var xs = 0;
+			var ys = 0;
+
+			xs = point2.x - point1.x;
+			xs = xs * xs;
+
+			ys = point2.y - point1.y;
+			ys = ys * ys;
+
+			return Math.sqrt( xs + ys );
+		}
+
+		function getRandomInt(min, max) {
+		    return Math.floor(Math.random() * (max - min + 1)) + min;
+		}
 
 		function boxsize(){
 			var box = document.getElementById("box");
@@ -33,13 +370,32 @@
 		    box.style.width = width+'px';
 		    box.style.height = height+'px';
 		    box.style.margin = -height/2+'px 0 0 '+ -width/2 +'px';
+
+		    return{
+		    	width: width,
+		    	height: height
+		    }
 		}
 	</script>
 </head>
 <body>
 	<div id="outer">
+		<div id="counter" class="counter">120</div>
 		<div id="box" class="box ver">
-			
+			<div id="boxinside" class="inside">
+				<img class="img" src="img/0.png" alt="">
+				<img class="img" src="img/1.png" alt="">
+				<img class="img" src="img/2.png" alt="">
+				<img class="img" src="img/3.png" alt="">
+				<img class="img" src="img/4.png" alt="">
+				<img class="img" src="img/5.png" alt="">
+				<img class="img" src="img/6.png" alt="">
+				<img class="img" src="img/7.png" alt="">
+				<img class="img" src="img/8.png" alt="">
+				<img class="img" src="img/9.png" alt="">
+				<img class="img" src="img/10.png" alt="">
+				<img class="img" src="img/11.png" alt="">
+			</div>
 		</div>
 	</div>
 </body>
