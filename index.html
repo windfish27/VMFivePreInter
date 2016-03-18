@@ -6,10 +6,39 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<title>Pre Interview</title>
 	<link rel="stylesheet" href="css/style.css">
+	<script>
+		var domReady = function(callback) {
+		document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
+		};
+
+		domReady(function() {
+		    boxsize();
+		    window.addEventListener("resize", function() {
+		    	boxsize();
+			}, false);
+
+		    
+		});
+
+		function boxsize(){
+			var box = document.getElementById("box");
+			var width;
+			if(window.innerHeight > window.innerWidth){
+				width = window.innerWidth*0.8;
+			}else{
+				width = window.innerWidth*0.7;
+			}
+
+		    var height = width*3/4;
+		    box.style.width = width+'px';
+		    box.style.height = height+'px';
+		    box.style.margin = -height/2+'px 0 0 '+ -width/2 +'px';
+		}
+	</script>
 </head>
 <body>
 	<div id="outer">
-		<div id="box">
+		<div id="box" class="box ver">
 			
 		</div>
 	</div>
