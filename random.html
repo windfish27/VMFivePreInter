@@ -45,8 +45,6 @@
 		document.readyState === "interactive" || document.readyState === "complete" ? callback() : document.addEventListener("DOMContentLoaded", callback);
 		};
 
-		var count;
-		var countimg;
 		var posArray = [];
 		var boxWidth;
 		var boxHeight
@@ -56,23 +54,17 @@
 			var box = boxsize();
 			boxWidth = box.width;
 			boxHeight = box.height;
-
-			
 			randomPos(boxWidth,boxHeight);
-
 			PositionArray();
 			showimg();
 
+			countdown();
 		    window.addEventListener("resize", function() {
 		    	box = boxsize();
 		    	
 		    	boxWidth = box.width;
 		    	boxHeight = box.height;
 		    	posArray = [];
-		    	randomPos(boxWidth,boxHeight);
-
-		    	PositionArray();
-		    	showimg();
 			}, false);
 
 		});
@@ -92,198 +84,18 @@
 			}
 		}
 
+		function countdown(){
+			var count = setInterval(function(){
+				randomPos(boxWidth,boxHeight);
+				PositionArray();
+				showimg();
+			}, 1000);
+		}
+
 		function PositionArray(){
+			posArray = [];
 			for(i=0;i<Num;i++){
 				var random = randomPos();
-				
-				if(i == 1){
-					var com0 = compare(random,posArray[0]);
-					while(!com0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-					}
-				}
-				if(i == 2){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					while(com0*com1 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-					}
-				}
-				if(i == 3){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					while(com0*com1*com2 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-					}
-				}
-				if(i == 4){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					while(com0*com1*com2*com3 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-					}
-				}
-				if(i == 5){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					var com4 = compare(random,posArray[4]);
-					while(com0*com1*com2*com3*com4 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-						com4 = compare(random,posArray[4]);
-					}
-				}
-				if(i == 6){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					var com4 = compare(random,posArray[4]);
-					var com5 = compare(random,posArray[5]);
-					while(com0*com1*com2*com3*com4*com5 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-						com4 = compare(random,posArray[4]);
-						com5 = compare(random,posArray[5]);
-					}
-				}
-				if(i == 7){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					var com4 = compare(random,posArray[4]);
-					var com5 = compare(random,posArray[5]);
-					var com6 = compare(random,posArray[6]);
-					while(com0*com1*com2*com3*com4*com5*com6 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-						com4 = compare(random,posArray[4]);
-						com5 = compare(random,posArray[5]);
-						com6 = compare(random,posArray[6]);
-					}
-				}
-				if(i == 8){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					var com4 = compare(random,posArray[4]);
-					var com5 = compare(random,posArray[5]);
-					var com6 = compare(random,posArray[6]);
-					var com7 = compare(random,posArray[7]);
-					while(com0*com1*com2*com3*com4*com5*com6*com7 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-						com4 = compare(random,posArray[4]);
-						com5 = compare(random,posArray[5]);
-						com6 = compare(random,posArray[6]);
-						com7 = compare(random,posArray[7]);
-					}
-				}
-				if(i == 9){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					var com4 = compare(random,posArray[4]);
-					var com5 = compare(random,posArray[5]);
-					var com6 = compare(random,posArray[6]);
-					var com7 = compare(random,posArray[7]);
-					var com8 = compare(random,posArray[8]);
-					while(com0*com1*com2*com3*com4*com5*com6*com7*com8 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-						com4 = compare(random,posArray[4]);
-						com5 = compare(random,posArray[5]);
-						com6 = compare(random,posArray[6]);
-						com7 = compare(random,posArray[7]);
-						com8 = compare(random,posArray[8]);
-					}
-				}
-				if(i == 10){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					var com4 = compare(random,posArray[4]);
-					var com5 = compare(random,posArray[5]);
-					var com6 = compare(random,posArray[6]);
-					var com7 = compare(random,posArray[7]);
-					var com8 = compare(random,posArray[8]);
-					var com9 = compare(random,posArray[9]);
-					while(com0*com1*com2*com3*com4*com5*com6*com7*com8*com9 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-						com4 = compare(random,posArray[4]);
-						com5 = compare(random,posArray[5]);
-						com6 = compare(random,posArray[6]);
-						com7 = compare(random,posArray[7]);
-						com8 = compare(random,posArray[8]);
-						com9 = compare(random,posArray[9]);
-					}
-				}
-				if(i == 11){
-					var com0 = compare(random,posArray[0]);
-					var com1 = compare(random,posArray[1]);
-					var com2 = compare(random,posArray[2]);
-					var com3 = compare(random,posArray[3]);
-					var com4 = compare(random,posArray[4]);
-					var com5 = compare(random,posArray[5]);
-					var com6 = compare(random,posArray[6]);
-					var com7 = compare(random,posArray[7]);
-					var com8 = compare(random,posArray[8]);
-					var com9 = compare(random,posArray[9]);
-					var com10 = compare(random,posArray[10]);
-					while(com0*com1*com2*com3*com4*com5*com6*com7*com8*com9*com10 == 0){
-						random = randomPos();
-						com0 = compare(random,posArray[0]);
-						com1 = compare(random,posArray[1]);
-						com2 = compare(random,posArray[2]);
-						com3 = compare(random,posArray[3]);
-						com4 = compare(random,posArray[4]);
-						com5 = compare(random,posArray[5]);
-						com6 = compare(random,posArray[6]);
-						com7 = compare(random,posArray[7]);
-						com8 = compare(random,posArray[8]);
-						com9 = compare(random,posArray[9]);
-						com10 = compare(random,posArray[10]);
-					}
-				}
-				
 				posArray.push(random);
 			}
 		}
@@ -299,29 +111,6 @@
 				x: ranX,
 				y: ranY
 			}
-		}
-
-		function compare(now,already){
-			var distance = lineDistance(now, already);
-			var line = lineDistance({x:0,y:0}, {x:Math.floor(boxWidth/10) + 1,y:Math.floor(boxWidth/10) + 1});
-			if(distance < line){
-				return false;
-			}else{
-				return true;
-			}
-		}
-
-		function lineDistance(point1, point2){
-			var xs = 0;
-			var ys = 0;
-
-			xs = point2.x - point1.x;
-			xs = xs * xs;
-
-			ys = point2.y - point1.y;
-			ys = ys * ys;
-
-			return Math.sqrt( xs + ys );
 		}
 
 		function getRandomInt(min, max) {
